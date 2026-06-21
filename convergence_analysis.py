@@ -47,6 +47,8 @@ def plot_monte_carlo_convergence():
     black_scholes_call = black_scholes_option_price(S0, K, r, sigma, T, "call")
     black_scholes_put = black_scholes_option_price(S0, K, r, sigma, T, "put")
 
+    plt.figure()
+
     plt.plot(simulation_counts, call_prices, marker="o", label="Monte Carlo call")
     plt.plot(simulation_counts, put_prices, marker="o", label="Monte Carlo put")
 
@@ -59,8 +61,7 @@ def plot_monte_carlo_convergence():
     plt.ylabel("Estimated option price")
     plt.legend()
 
-    os.makedirs("plots", exist_ok=True)
-    plt.savefig("plots/gbm_convergence_plot.png", dpi=300, bbox_inches="tight")
+    plt.savefig("gbm_convergence_plot.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -88,6 +89,8 @@ def plot_confidence_interval_width():
         ci_width = 2 * 1.96 * standard_error
         ci_widths.append(ci_width)
 
+    plt.figure()
+
     plt.plot(simulation_counts, ci_widths, marker="o")
 
     plt.xscale("log")
@@ -95,7 +98,6 @@ def plot_confidence_interval_width():
     plt.xlabel("Number of simulations")
     plt.ylabel("95% confidence interval width")
 
-    plt.savefig("gbm_convergence_plot.png", dpi=300, bbox_inches="tight")
     plt.savefig("gbm_ci_width_vs_simulations.png", dpi=300, bbox_inches="tight")
     plt.show()
 
